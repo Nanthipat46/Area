@@ -1,8 +1,13 @@
+const express = require('express');
 const functions = require('firebase-functions');
 const { WebhookClient, Payload } = require('dialogflow-fulfillment');
 
-exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
-    const agent = new WebhookClient({ request, response });
+const app = express();
+
+app.use(express.json());
+
+app.post('/webhook', (req, res) => {
+    const agent = new WebhookClient({ request: req, response: res });
 
     function chooseShape(agent) {
         const payloadJson = {
@@ -60,4 +65,10 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     intentMap.set('ChooseShapeIntent', chooseShape);
     intentMap.set('CalculateAreaIntent', calculateArea);
     agent.handleRequest(intentMap);
+});
+
+// เริ่มเซิร์ฟเวอร์ที่พอร์ตที่กำหนด
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
