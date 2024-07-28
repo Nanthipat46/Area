@@ -4,11 +4,11 @@
   "description": "this is a webhook for line chatbot",
   "main": "index.js",
   "engines": {
-    "node": ">=14"  
+    "node": ">=10"
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
+    "dev": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
