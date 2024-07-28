@@ -4,7 +4,7 @@
   "description": "this is a webhook for line chatbot",
   "main": "index.js",
   "engines": {
-    "node": ">=10"  
+    "node": ">=14"  
   },
   "scripts": {
     "start": "node index.js",
